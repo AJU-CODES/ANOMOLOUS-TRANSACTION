@@ -43,15 +43,19 @@ def main():
         submitted = st.form_submit_button("Predict")
         
         if submitted:
+            if amount > 35000:
+                st.warning("⚠️ High transaction amount! ₹35,000+ is considered risky.")
+
             features = pd.DataFrame({
                 'amt': [amount], 'lat': [latitude], 'long': [longitude],
                 'city_pop': [city_pop], 'unix_time': [unix_time],
                 'merch_lat': [merch_lat], 'merch_long': [merch_long]
             })
+
             probability = predict_fraud(features, model, scaler)
             prediction = "🚨 FRAUDULENT" if probability > 0.5 else "✅ LEGITIMATE"
             risk_level = "High" if probability > 0.7 else "Medium" if probability > 0.3 else "Low"
-            
+
             st.write("### Prediction Results")
             st.metric("Fraud Probability", f"{probability:.2%}")
             st.metric("Transaction Status", prediction)
