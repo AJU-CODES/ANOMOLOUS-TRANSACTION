@@ -1,0 +1,11 @@
+step 1: Create a virtual environment
+    - python -m venv env
+    - env\Scripts\activate
+step 2: Installation
+    -  pip install numpy pandas scikit-learn streamlit tensorflow joblib imbalanced-learn
+step 3: Model training
+    - python train_model.py
+step iv: Front end 
+    - python app.py
+step 5: Adjustments
+    - change the values and predict 
